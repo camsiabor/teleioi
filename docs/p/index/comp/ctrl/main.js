@@ -306,7 +306,7 @@ const init = async function (opts) {
         mirrorSync: async function() {
             let data;
             const mirror = this.config.mirror;
-            const host = mirror.endpoint || 'https://szplay.net';
+            const host = mirror.endpoint || 'https://teleioi.net';
             try {
                 this.info('Mirror sync img');
                 data = await this.mirrorRequest({

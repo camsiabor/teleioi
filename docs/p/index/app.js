@@ -28,8 +28,8 @@ const init = async function(/* OPTS */) {
     };
 
     let host = window.location.host;
-    if (host !== 'szplay.net' && host !== 'gmg991.github.io') {
-        host = 'szplay.net';
+    if (host !== 'teleioi.net' && host !== 'camsiabor.github.io') {
+        host = 'teleioi.net';
     }
     const canvasier = (canvas, ctx, img ) => {
         try {

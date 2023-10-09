@@ -89,25 +89,10 @@ const template =
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
                             <a class="dropdown-item" href="#"
-                               @click="window.open('https://t.me/s/gmg99991');">
-                               Telegram: gmg99991
+                               @click="window.open('https://hegel.net');">
+                               Hegel
                             </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#"
-                               @click="window.open('https://t.me/s/szplay999');">
-                               Telegram: szplay999
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a class="dropdown-item" href="#"
-                               @click="window.open('https://www.yuni.com.cn/');">
-                               与你APP号: szplay.net
-                            </a>
-                        </li>
-                        
-                                                                                                                   
+                        </li>                                                                                 
                     </ul>
                 </li>
 

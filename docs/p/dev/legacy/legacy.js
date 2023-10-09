@@ -175,8 +175,8 @@ const twitterMethods = {
                 break;
         }
         return {
-            name : 'gmg999' + city,
-            url : 'https://twitter.com/gmg999' + city,
+            name : 'camsiabor' + city,
+            url : 'https://twitter.com/camsiabor' + city,
         };
     },
 };

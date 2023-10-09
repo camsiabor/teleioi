@@ -4,11 +4,8 @@ const TEMPLATE =
 `
 <div :style="ui.style.main" class="container-fluid">
         
-    <div style="color: grey; font-weight: bold; font-size: 0.78em;">
-        联系☎️ <span style="color: rgb(255,128,0)"> 与你号 szplay.net </span> | 与你下载
-        <a href="https://www.yuni.com.cn/"  target="_blank"> www.yuni.com.cn</a> | 
-        <a href="https://t.me/s/gmg99991" target="_blank">Telegram: gmg99991</a> |
-        📌 有⭐️的妹都是验证过有好评，没有⭐的没有验证或评价不一 📌
+    <div style="color: grey; font-weight: bold; font-size: 0.80em;">
+        
     </div>
 
     <play-search ref="search"></play-search>
@@ -18,13 +15,13 @@ const TEMPLATE =
             <button type="button"
                     class="btn btn-sm btn-outline-danger"
                     @click="ui.modal.config = true">
-                <i class="bi bi-gear"></i> 连接设置
+                <i class="bi bi-gear"></i> Connection Settings
             </button>
             <button type="button"
                     class="btn btn-sm btn-outline-danger"
                     @click="window.location.reload()"
             >
-                <i class="bi bi-arrow-clockwise"></i> 重新加载
+                <i class="bi bi-arrow-clockwise"></i> Reload
             </button>
         </div>
         <span style="color: red; font-size: 0.9em;">{{ui.message}}</span>
@@ -38,14 +35,14 @@ const TEMPLATE =
 
 </div>
 <div>
-<bs-modal ref="info" title="说明"
+<bs-modal ref="info" title="Info"
               v-model:toggled="ui.modal.info">
         <component v-if="ui.modal.info"
                    :is="ui.modal.info ? 'play-info' : 'div' ">
         </component>
     </bs-modal>
 
-    <bs-modal ref="config" title="设置"
+    <bs-modal ref="config" title="Settings"
               v-model:toggled="ui.modal.config">
         <component v-if="ui.modal.config"
                    :is="ui.modal.config ? 'play-config' : 'div' ">

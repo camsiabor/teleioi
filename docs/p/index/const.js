@@ -57,9 +57,9 @@ async function init() {
                 cn: 'io.page',
                 prefix: SELF.github.pageUrl + '/img/',
             },
-            'szplay': {
-                cn: 'szplay',
-                prefix: 'https://szplay.net/img/'
+            'camsiabor': {
+                cn: 'camsiabor',
+                prefix: 'https://camsiabor.net/img/'
             },
             'custom': {
                 cn: '自定义',
