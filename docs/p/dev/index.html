@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="/css/bs/bootstrap.min.css?v=5"/>
+    <title>Wechat</title>
+</head>
+
+<body>
+
+<div id="app" class="container" style="width: 100%; height: 100%">
+    <h1>Hello App!</h1>
+
+    <div>
+        <router-link to="/">home</router-link>
+    </div>
+    <div>
+        <router-link to="/wechat">wechat</router-link>
+    </div>
+    <div>
+        <router-link to="/script">script</router-link>
+    </div>
+    <!-- route outlet -->
+    <!-- component matched by the route will render here -->
+    <router-view></router-view>
+</div>
+
+<script type="text/javascript" src="/js/axios.js"></script>
+<script type="text/javascript" src="/js/bs/bootstrap.bundle.min.js?v=5"></script>
+<script type="text/javascript" src="/js/vue/vue.js?v=3"></script>
+<script type="text/javascript" src="/js/vue/vue-router.js?v=4"></script>
+<script type="text/javascript">
+    function erudaInit() {
+        const src = '/js/eruda/eruda.js';
+        document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+        localStorage.setItem('eruda', 'true');
+    }
+
+    function erudaDestroy() {
+        if (eruda) {
+            eruda.destroy();
+        }
+        localStorage.setItem('eruda', false);
+    }
+    ;(function () {
+        if (!/dev=1/.test(window.location) && localStorage.getItem('eruda') !== 'true') {
+            return;
+        }
+        // erudaInit();
+    })();
+</script>
+<script type="text/javascript">
+
+    const OPTS = {suffix: 'd=20210428_E'};
+
+    console.log("v", OPTS.suffix, OPTS);
+
+    async function main(module) {
+
+        const Loader = module.default;
+        const UTIL = await Loader.import('/js/util.js', OPTS);
+
+        const routes = [
+            {
+                path: '/wechat',
+                component: Vue.defineAsyncComponent(() => {
+                    const params = {};
+                    Object.assign(params, OPTS);
+                    params.key = 'mod-wechat';
+                    return Loader.import('/p/dev/mod/wechat.js', params);
+                })
+            },
+            {
+                path: '/script',
+                component: Vue.defineAsyncComponent(() => {
+                    const params = {};
+                    Object.assign(params, OPTS);
+                    params.key = 'mod-script';
+                    return Loader.import('/p/dev/mod/script.js', params);
+                })
+            },
+        ];
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes,
+        });
+
+        const app = Vue.createApp({});
+        app.use(router);
+        app.config.errorHandler = (err, vm, info) => {
+            console.log('vue', 'app', 'error', err, 'vm', vm, 'info', info);
+        };
+
+        window.R = app.mount('#app');
+        window.app = app;
+    }
+
+    import('/js/loader.js?' + OPTS.suffix).then(async (module) => {
+        try {
+            await main(module);
+        } catch (ex) {
+            console.trace(ex);
+        }
+    }).catch((ex) => {
+        console.trace(ex);
+    });
+</script>
+</body>
+</html>

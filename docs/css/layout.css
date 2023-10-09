@@ -1,0 +1,46 @@
+
+
+.g-loading {
+    background-size: auto 100% ;
+    background: transparent url('/images/loading/loading.gif') center no-repeat
+}
+
+.g-loading-bottle {
+    background-size: auto 100% ;
+    background: transparent url('/images/loading/loading_bottle.gif') center no-repeat
+}
+
+.g-loading-dotted {
+    background-size: auto 100% ;
+    background: transparent url('/images/loading/loading_dotted.gif') center no-repeat
+}
+
+.g-loading-buffer {
+    background-size: auto 100% ;
+    background: transparent url('/images/loading/loading_buffer.gif') center no-repeat;
+}
+
+
+.g-layout-percent-10 {
+    width: 20%
+}
+
+.g-layout-percent-20 {
+    width: 20%
+}
+
+.g-layout-percent-25 {
+    width: 25%
+}
+
+.g-layout-percent-33 {
+    width: 33%
+}
+
+.g-layout-percent-50 {
+    width: 33%
+}
+
+.g-layout-percent-100 {
+    width: 100%
+}

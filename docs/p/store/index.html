@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <link href="/p/index/css/gmg.css" rel="stylesheet"/>
+    <link href="/css/bs/bootstrap.min.css?v=5" rel="stylesheet"/>
+    <link href="/css/bs/bootstrap.icon.css?v=1.5" rel="stylesheet"/>
+
+    <title>优婷</title>
+</head>
+
+
+<body>
+
+<div id="app">
+    <header>
+
+    </header>
+
+    <main>
+
+    </main>
+
+
+    <footer>
+
+    </footer>
+</div>
+
+<script src="/js/axios.js" type="text/javascript"></script>
+
+<script src="/js/comp/mitt/v2.js" type="text/javascript"></script>
+<script src="/js/img/imgload/v4.js" type="text/javascript"></script>
+<script src="/js/layout/masonry/v4.js" type="text/javascript"></script>
+
+<script src="/js/bs/bootstrap.bundle.min.js?v=5" type="text/javascript"></script>
+
+<script src="/js/vue/vue.js?v=3" type="text/javascript"></script>
+<script src="/js/vue/vuex.js?v=4" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+    const OPTS = {suffix: 'd=20210618_C'};
+
+    console.log("v", OPTS.suffix, OPTS);
+
+
+    function $progress(val, msg) {
+        try {
+            const bar = document.getElementById('progress');
+            const tag = document.getElementById('progress_msg');
+            if (bar && tag) {
+                msg = msg || '';
+                bar.value = val;
+                tag.innerText = val + '% ' + msg;
+            }
+        } catch (ex) {
+            console.error(ex);
+        }
+    }
+
+
+    import('/js/loader.js?' + OPTS.suffix).then(async (module) => {
+        try {
+
+            const Loader = module.default;
+
+            let MODS = {
+                UTIL: '/js/util.js',
+                VUTIL: '/js/vue/vutil.js',
+                C: '/p/index/const.js',
+                ATTRS: '/p/index/attrs.js',
+            };
+
+            let PLUGINS = {
+                'store' : '/p/index/store/store.js',
+                'bs-toast'  : '/js/vue/comp/bs-toast.js',
+            };
+
+            let DIRECTIVES = {
+                'intersect': '/js/vue/directive/intersect.js'
+            };
+
+            let COMPONENTS = {
+
+                'tele-tree': '/p/index/comp/play/tree.js',
+
+                'play-nav' : '/p/index/comp/play/nav.js',
+                'play-filter': '/p/index/comp/play/filter.js',
+                'play-search' : '/p/index/comp/play/search.js',
+
+                'bs-modal' : '/js/vue/comp/bs-modal.js',
+                'bs-offcanvas': '/js/vue/comp/bs-offcanvas.js',
+            };
+
+            let COMPONENTS_ASYNC = {
+                'play-info' : Vue.defineAsyncComponent(() => {
+                    const params = {};
+                    Object.assign(params, OPTS);
+                    params.key = 'play-info';
+                    return Loader.import('/p/index/comp/play/info.js', params);
+                }),
+                'play-config' : Vue.defineAsyncComponent(() => {
+                    const params = {};
+                    Object.assign(params, OPTS);
+                    params.key = 'play-config';
+                    return Loader.import('/p/index/comp/play/config.js', params);
+                }),
+            };
+
+            $progress(3, 'app');
+            const APPOPTS = await Loader.import('/p/index/app.js', OPTS);
+            $progress(10, 'mod');
+            MODS = await Loader.c('MODS', Loader.imports, OPTS, MODS);
+            $progress(25, 'plugin');
+            PLUGINS = await Loader.c('PLUGINS', Loader.imports, OPTS, PLUGINS);
+            $progress(35, 'compon');
+            COMPONENTS = await Loader.c('COMPONENTS', Loader.imports, OPTS, COMPONENTS);
+            $progress(60, 'diriect');
+            DIRECTIVES = await Loader.c('DIRECTIVES', Loader.imports, OPTS, DIRECTIVES);
+            $progress(70, 'layout');
+
+            const app = Vue.createApp(APPOPTS);
+
+            const provides = {
+                window,
+                console,
+                document,
+                ...MODS,
+                LOADER: Loader,
+                APPCTX: app,
+            };
+
+            Object.assign(app.config.globalProperties, provides);
+            app.config.globalProperties.PROVIDES = provides;
+
+            for(let k in PLUGINS) {
+                app.use(PLUGINS[k]);
+            }
+
+            for(let k in DIRECTIVES) {
+                app.directive(k, DIRECTIVES[k]);
+            }
+
+            for(let k in COMPONENTS) {
+                app.component(k, COMPONENTS[k]);
+            }
+
+            for(let k in COMPONENTS_ASYNC) {
+                app.component(k, COMPONENTS_ASYNC[k]);
+            }
+
+            app.config.errorHandler = (err, vm, info) => {
+                console.error('VUE ERROR', err, 'vm', vm, 'info', info);
+            };
+
+            window.VM = app.mount('#app');
+
+            Object.assign(window, MODS);
+            window.APP = app;
+            window.LOADER = Loader;
+            window.STORE = PLUGINS.store;
+            window.STATE = PLUGINS.store.state;
+            window.GETTER = PLUGINS.store.getters;
+            window.HUB = PLUGINS.store.state.hub;
+
+            window.$G = function(code) {
+                return window.STATE.tree.current.mapping[code];
+            };
+        } catch (ex) {
+            console.trace(ex);
+        }
+    }).catch((ex) => {
+        console.trace(ex);
+    });
+</script>
+
+</body>
+</html>

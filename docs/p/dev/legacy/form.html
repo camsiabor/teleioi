@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name=”description” content="GMG 广东樓鳳 广东約炮 广东兼職 广东援交 广东会所 QM，SM，会所 GMG 优质妹子"/>
+
+  <link rel="shortcut icon" href="/images/logo/favicon/favicon.ico"/>
+  <link rel="stylesheet" href="/css/bootstrap.css"/>
+  <title>GMG 粤．优质妹子</title>
+</head>
+
+<body>
+
+<div id="app" class="container" style="width: 100%; height: 100%">
+
+  <!------------------------------- nav ------------------------------------>
+
+  <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top " id="navigator">
+
+    <div class="container">
+
+      <a class="navbar-brand" href="#">
+        <img v-bind:src="logo"
+             style="width: 1.2em; height: 1.2em;"
+             class="mq_avatar" alt=""/>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigator_body"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navigator_body">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="font-weight: bold"
+               href="#" id="dropdown_info" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              联系
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!------------------------------- list ------------------------------------>
+  <div id="form" class="container" style="margin-top: 10vh">
+
+
+    <div class="row">
+      <div class="col-12">
+
+
+        <form>
+
+          <div class="form-row">
+
+            <div class="form-group col-md-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">City</span>
+                </div>
+                <select id="inputState" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">ID</span>
+                </div>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+
+            <div class="form-group col-md-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Name</span>
+                </div>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+
+            <div class="form-group col-md-3">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Area</span>
+                </div>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Detail</span>
+                </div>
+                <input type="text" class="form-control" placeholder="">
+              </div>
+
+
+            </div>
+
+          </div>
+
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Address 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputCity">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+
+            <div class="form-group col-md-2">
+              <label for="inputZip">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="customCheck1">
+              <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<script type="text/javascript" src="/js/axios.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/js/vue.js"></script>
+
+
+<script type="module">
+
+  import Mapping from "/data/mapping.js";
+
+  window.mapping = new Mapping();
+
+  // console.log(mapping);
+
+  const initUrl = {
+
+    pic: {
+      logo: '/images/logo/favicon/apple-touch-icon.png',
+      loading: '/images/loading/loading_snake.gif',
+    },
+
+    img: {
+      root: 'https://gmg99991.github.io/img/',
+      blob: 'https://github.com/gmg99991/img/blob/master/',
+      tree: 'https://api.github.com/repos/gmg99991/img/git/trees/master'
+    }
+
+  };
+
+  const initMapping = {
+    '': '',
+    'ZH': '珠海 ZH',
+    'GZ': '广州 GZ',
+    'SZ': '深圳 SZ',
+    // 'MO': '澳门 MO',
+  };
+
+  const initData = () => {
+    return {
+      logo: '',
+      url: initUrl,
+    };
+  };
+
+  const initMethods = {};
+
+
+  const vueOpts = {
+    el: '#app',
+    data: initData,
+    methods: initMethods,
+    components: {},
+    created() {
+      this.logo = this.url.pic.logo;
+    }
+  };
+
+  window.$inst = new Vue(vueOpts);
+
+</script>
+</body>
+</html>

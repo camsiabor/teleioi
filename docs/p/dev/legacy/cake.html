@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="/css/bs/bootstrap.min.css?v=5"/>
+    <title>Cake</title>
+</head>
+
+<body>
+
+<div id="app" class="container" style="width: 100%; height: 100%">
+
+    <div class="row">
+        <div class="col-12">
+            <p>{{message}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="input-group-prepend">
+                <button type="button" class="btn btn-sm btn-outline-info" @click="configSave();">
+                    Config Save
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="esCreate();">
+                    ES Create
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="esDelete();">
+                    ES Delete
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="esQuery();">
+                    ES Query
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="metaConvert(this.config.locator);">
+                    Meta Convert
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="metaConvertAll();">
+                    Meta Convert All
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="test();">
+                    Test
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Elastic.End</span>
+                            </div>
+                            <input type="text" class="form-control" v-model="config.es.endpoint"
+                                   placeholder="endpoint">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Elastic.Auth</span>
+                            </div>
+                            <input type="text" class="form-control" v-model="config.es.username"
+                                   placeholder="username">
+                            <input type="text" class="form-control" v-model="config.es.password"
+                                   placeholder="password">
+                            <input type="text" class="form-control" v-model="config.es.index"
+                                   placeholder="index">
+                            <input type="text" class="form-control" v-model="config.locator"
+                                   placeholder="locator">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <comp-logi :limit="22" ref="logi"></comp-logi>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="/js/axios.js"></script>
+<script type="text/javascript" src="/js/bs/bootstrap.bundle.min.js?v=5"></script>
+<script type="text/javascript" src="/js/vue/vue.js?v=3"></script>
+<script type="text/javascript">
+    function erudaInit() {
+        const src = '/js/eruda/eruda.js';
+        document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+        localStorage.setItem('eruda', 'true');
+    }
+
+    function erudaDestroy() {
+        if (eruda) {
+            eruda.destroy();
+        }
+        localStorage.setItem('eruda', false);
+    }
+    ;(function () {
+        if (!/dev=1/.test(window.location) && localStorage.getItem('eruda') !== 'true') {
+            return;
+        }
+        // erudaInit();
+    })();
+</script>
+<script type="text/javascript">
+
+    const opts = {suffix: 'd=20210428_E'};
+
+    console.log("v", opts.suffix, opts);
+
+    async function main(module) {
+        const Loader = module.default;
+        const UTIL = await Loader.import('/js/util.js', opts);
+        const ES = await Loader.import('/p/index/data/elastic.js', opts);
+        const Logi = await Loader.import('/js/vue/comp/logi.js', opts);
+
+        const { ATTRZ } = await Loader.import('/p/index/attrs.js', opts);
+        const { LOCATIONS } = await Loader.import('/p/index/const.js', opts);
+
+        window.ATTRZ = ATTRZ;
+
+        const mapper = {
+
+            here: (o) => UTIL.flag.add(o.status, 'flag', ATTRZ.status.work.code),
+
+            star: (o) => UTIL.num.assignGT(o.rating, 'overall', 70),
+            recommend: (o) => UTIL.num.assignGT(o.rating, 'overall', 85),
+
+            half: (o) => {
+                UTIL.flag.add(o.service, 'open', ATTRZ.service.open.handjob.code);
+                UTIL.flag.add(o.service, 'hand', ATTRZ.service.hand.handjob.code);
+            },
+            hand: (o) => {
+                UTIL.flag.add(o.service, 'open', ATTRZ.service.open.handjob.code);
+                UTIL.flag.add(o.service, 'hand', ATTRZ.service.hand.handjob.code);
+            },
+            foot: (o) => {
+                UTIL.flag.add(o.service, 'open', ATTRZ.service.open.footjob.code);
+                UTIL.flag.add(o.service, 'body', ATTRZ.service.body.footjob.code);
+            },
+            kiss: (o) => {
+                UTIL.flag.add(o.service, 'mouth', ATTRZ.service.mouth.kiss.code);
+            },
+            mouth: (o) => {
+                UTIL.flag.add(o.service, 'open', ATTRZ.service.open.bj.code);
+                UTIL.flag.add(o.service, 'mouth', ATTRZ.service.mouth.bj.code);
+            },
+            mouth_cum: (o) => {
+                UTIL.flag.add(o.service, 'open', ATTRZ.service.open.bj_cum.code);
+                UTIL.flag.add(o.service, 'mouth', ATTRZ.service.mouth.bj_cum.code);
+            },
+
+            part_time: (o) => {
+                UTIL.flag.add(o, 'type', ATTRZ.type.part_time.code);
+                UTIL.flag.add(o.status, 'flag', ATTRZ.status.work_part_time.code);
+            },
+            agent: (o) => UTIL.flag.add(o, 'type', ATTRZ.type.agent.code),
+
+
+            gto: (o) => UTIL.flag.add(o, 'type', ATTRZ.type.pimp.code),
+            club: (o) => null,
+            street: (o) => UTIL.flag.add(o, 'type', ATTRZ.type.street.code),
+
+            body: (o) => UTIL.num.assignGT(o.rating, 'shape', 70),
+            beauty: (o) => UTIL.num.assignGT(o.rating, 'face', 70),
+            service: (o) => UTIL.num.assignGT(o.rating, 'service', 70),
+            character: (o) => UTIL.num.assignGT(o.rating, 'character', 70),
+            flirty: (o) => {
+                UTIL.num.assignGT(o.rating, 'slutty', 70);
+                UTIL.flag.add(o.character, 'type', ATTRZ.character.slutty.code);
+            },
+            massage: (o) => {
+                UTIL.num.assignGT(o.rating, 'massage', 70);
+                UTIL.flag.add(o.service, 'hand', ATTRZ.service.hand.massage.code);
+            },
+            "180cm" : (o) => UTIL.num.assignGT(o.body, 'height', 180),
+            "175cm" : (o) => UTIL.num.assignGT(o.body, 'height', 175),
+            "170cm" : (o) => UTIL.num.assignGT(o.body, 'height', 170),
+            "165cm" : (o) => UTIL.num.assignGT(o.body, 'height', 165),
+            "160cm" : (o) => UTIL.num.assignGT(o.body, 'height', 160),
+            "155cm" : (o) => UTIL.num.assignGT(o.body, 'height', 155),
+            "150cm" : (o) => UTIL.num.assignGT(o.body, 'height', 150),
+
+            "A+" : (o) => UTIL.num.assignGT(o.body, 'chest', 10),
+            "B+" : (o) => UTIL.num.assignGT(o.body, 'chest', 20),
+            "C+" : (o) => UTIL.num.assignGT(o.body, 'chest', 30),
+            "D+" : (o) => UTIL.num.assignGT(o.body, 'chest', 40),
+            "E+" : (o) => UTIL.num.assignGT(o.body, 'chest', 50),
+            "F+" : (o) => UTIL.num.assignGT(o.body, 'chest', 60),
+
+            "05+" : (o) => UTIL.num.assignGT(o.body, 'birth', 2005),
+            "00+" : (o) => UTIL.num.assignGT(o.body, 'birth', 2000),
+            "95+" : (o) => UTIL.num.assignGT(o.body, 'birth', 1995),
+            "90+" : (o) => UTIL.num.assignGT(o.body, 'birth', 1990),
+            "85+" : (o) => UTIL.num.assignGT(o.body, 'birth', 1985),
+            "80+" : (o) => UTIL.num.assignGT(o.body, 'birth', 1980),
+
+            augment: (o) => UTIL.num.assignGT(o.body, 'cosmetic', ATTRZ.body.cosmetic.augment.code),
+
+            sm: (o) => {
+                UTIL.flag.add(o.service, 'form', ATTRZ.service.tool.toy.code);
+                UTIL.flag.add(o.service, 'form', ATTRZ.service.form.m.code);
+                UTIL.flag.add(o.service, 'form', ATTRZ.service.form.sm1.code);
+            },
+
+            anal: (o) => UTIL.flag.add(o.service, 'pubis', ATTRZ.service.pubis.anal.code),
+            cumshot: (o) => UTIL.flag.add(o.service, 'pubis', ATTRZ.service.pubis.cumshot.code),
+
+            np: (o) => UTIL.flag.add(o.service, 'flag', ATTRZ.service.form.np.code),
+            hour: (o) => UTIL.flag.add(o.service, 'form', ATTRZ.service.form.hour.code),
+            night: (o) => UTIL.flag.add(o.service, 'form', ATTRZ.service.form.night.code),
+        };
+
+        const vueopts = {
+
+            data() {
+                return {
+                    message: '',
+                    config: {
+                        locator: '',
+                        es: {
+                            endpoint: '',
+                            username: '',
+                            password: '',
+                            index: '',
+                        }
+                    }
+                }
+            },
+
+            computed: {
+                es() {
+                    return this.config.es;
+                },
+                index() {
+                    return this.config.es.index;
+                },
+                logi() {
+                    return this.$refs.logi;
+                }
+            },
+
+            methods: {
+
+                async requestES(opts) {
+                    const es = this.config.es;
+                    opts.auth = {
+                        username: es.username,
+                        password: es.password,
+                    };
+                    opts.url = es.endpoint + '/' + opts.url;
+                    return this.request(opts);
+                },
+
+                async request(opts) {
+                    if (!opts.method) {
+                        return Promise.reject(new Error('no method is set in options'));
+                    }
+                    const inner = (resolve, reject) => {
+                        const params = {
+                            method: opts.method,
+                            url: opts.url,
+                        };
+                        if (opts.auth) {
+                            params.auth = opts.auth;
+                        }
+                        if (opts.data) {
+                            params.data = opts.data;
+                        }
+                        if (opts.headers) {
+                            params.headers = opts.headers;
+                        }
+                        this.logi.info('request | ' + opts.tag, params.method + ' ' + opts.url, params);
+                        axios(params).then((res) => {
+                            this.logi.info('success | ' + opts.tag, res.statusText, res.data, {color: 'rgb(0,172,172)'});
+                            resolve(res.data);
+                        }).catch((ex) => {
+                            this.logi.error('failure | ' + opts.tag, ex.toString(), ex.response ? (ex.response.data || ex.response) : ex);
+                            reject(ex.response ? ex.response : ex);
+                        });
+                    };
+                    return new Promise(inner);
+                },
+
+
+                /* =========================== es =========================== */
+
+                async esCreate() {
+                    await this.requestES({
+                        tag: 'ES Create',
+                        method: 'PUT',
+                        url: this.index,
+                        data: ES.SchemaGirl,
+                    });
+                },
+
+                async esDelete() {
+                    await this.requestES({
+                        tag: 'ES Delete',
+                        method: 'DELETE',
+                        url: this.index,
+                    });
+                },
+
+                async esQuery() {
+                    const data = {
+                        from: 0,
+                        size: 10000,
+                        query: {
+                            match: {
+                                locator: this.config.locator
+                            }
+                        }
+                    };
+                    const res = await this.requestES({
+                        tag: 'ES Query',
+                        method: 'POST',
+                        url: this.index + '/_search',
+                        data,
+                    });
+
+                    const map = ES.resultToMap(res);
+                    UTIL.json.download(map, this.config.locator + '.json');
+                },
+
+                /* =========================== convert begin =========================== */
+
+                metaGene: function (one, id, code, locator_id, locator) {
+                    const t = new Date().getTime();
+                    one = {
+                        id,
+                        code,
+                        locator: locator_id,
+                        body: { },
+                        service: { },
+                        charge: { },
+                        character: { },
+                        rating: { t },
+                        status: { t },
+                        location: {...locator },
+                        feed: { t },
+                        secret: { t },
+                        extra: { },
+                    };
+                    const num = code.substr(2) * 1;
+                    if (num >= 9800) {
+                        one.type = ATTRZ.type.club_all.code;
+                    } else if (num >= 9500) {
+                        one.type = ATTRZ.type.club_mouth.code;
+                    } else if (num >= 9200) {
+                        one.type = ATTRZ.type.club_hand.code;
+                    } else if (num >= 8000 && num < 9000) {
+                        one.type = ATTRZ.type.agent.code;
+                    } else if (num >= 7000 && num < 8000) {
+                        one.type = ATTRZ.type.street.code;
+                    } else if (num < 7000) {
+                        one.type = ATTRZ.type.house.code;
+                    }
+                    return one;
+                },
+
+                metaMappingArray(map, array, locator, callback) {
+                    const len = array.length;
+                    const locator_id = LOCATIONS.id(locator, "_",  1);
+                    for(let i = 0; i < len; i += 1) {
+                        const code = locator.city + array[i];
+                        const id = locator.nation + '_' + locator.province + '_' + code;
+                        let one = map[id];
+                        if (!one) {
+                            one = this.metaGene(one, id, code, locator_id, locator);
+                            map[id] = one;
+                        }
+                        callback(one);
+                    }
+                },
+
+                metaMapping(meta, mapper, locator) {
+                    const r = { };
+
+                    for(let key in meta) {
+                        const value = meta[key];
+                        const callback = mapper[key];
+                        if (!value) {
+                            continue;
+                        }
+                        if (value instanceof Array && callback) {
+                            this.metaMappingArray(r, value, locator, callback);
+                            continue;
+                        }
+                        if (key !== '_AREA_') {
+                            continue;
+                        }
+                        for(let area in value) {
+                            if (area === '_DEFAULT_') {
+                                continue;
+                            }
+                            const array = value[area];
+                            this.metaMappingArray(r, array, locator, (o) => {
+                               UTIL.str.concat(o.location, 'district', area);
+                            });
+                        }
+                    }
+                    const areadef = meta['_AREA_']['_DEFAULT_'] || '';
+                    if (areadef) {
+                        for(let k in r) {
+                            const one = r[k];
+                            if (!one.location.district) {
+                                one.location.district = areadef;
+                            }
+                        }
+                    }
+                    return r;
+                },
+
+                async metaConvert(locatorId) {
+                    try {
+
+                        const locator = LOCATIONS.parse(locatorId);
+
+                        const cd = LOCATIONS.id(locator, '/', -1);
+
+                        const meta = await this.request({
+                            tag: 'Meta Get',
+                            method: 'GET',
+                            url: '/data/area/' + cd + '/meta.json'
+                        });
+
+                        const r = this.metaMapping(meta, mapper, locator);
+
+                        this.logi.info('Convert', '', r);
+
+                        const bulk = [];
+                        for(let id in r) {
+                            const one = r[id];
+                            const head = JSON.stringify( {
+                                update: {
+                                    _id: id,
+                                    _index: this.config.es.index
+                                }
+                            });
+                            const tail = JSON.stringify({
+                                doc: one,
+                                doc_as_upsert: true
+                            });
+                            bulk.push(head);
+                            bulk.push(tail);
+                        }
+
+                        const total = bulk.join('\n') + '\n';
+                        await this.requestES({
+                            tag: 'ES Bulk',
+                            method: 'PUT',
+                            url: '_bulk',
+                            data: total,
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                        });
+                    } catch (ex) {
+                        this.logi.error('Meta Convert', ex.toString(), ex);
+                    }
+                },
+
+                async metaConvertAll() {
+                    const ids = [
+                        "CN_GUDO_ZH",
+                        "CN_GUDO_GZ",
+                        "CN_GUDO_SZ",
+                        "CN_GUDO_FS",
+                        "CN_GUDO_ZS",
+                        "CN_GUDO_MO",
+                    ];
+                    for(let i = 0; i < ids.length; i += 1) {
+                        const id = ids[i];
+                        await this.metaConvert(id);
+                    }
+                },
+
+                async test() {
+
+                    const resp = await axios({
+                        method: 'post',
+                        url: '/api/pong/local/http/wechat',
+                        data: '<h1>power</h1>',
+                        headers: {
+                            'Content-Type': 'text/xml'
+                        }
+                    });
+
+                    console.log(resp);
+
+                },
+
+                /* =========================== convert end =========================== */
+
+                configSave() {
+                    const json = JSON.stringify(this.config);
+                    window.localStorage.setItem(window.location.pathname, json);
+                    this.logi.info('Config', 'Save', json);
+                },
+
+                configLoad() {
+                    const json = window.localStorage.getItem(window.location.pathname);
+                    if (json) {
+                        this.config = JSON.parse(json);
+                    }
+                    this.logi.info('Config', 'Load', this.config);
+                },
+
+            },
+
+            mounted() {
+                this.configLoad();
+            }
+        };
+
+        const app = Vue.createApp(vueopts);
+        app.component('comp-logi', Logi);
+        app.config.errorHandler = (err, vm, info) => {
+            console.log('vue', 'app', 'error', err, 'vm', vm, 'info', info);
+        };
+
+        window.R = app.mount('#app');
+        window.app = app;
+    }
+
+    import('/js/loader.js?' + opts.suffix).then(async (module) => {
+        try {
+            await main(module);
+        } catch (ex) {
+            console.trace(ex);
+        }
+    }).catch((ex) => {
+        console.trace(ex);
+    });
+</script>
+</body>
+</html>

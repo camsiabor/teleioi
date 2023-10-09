@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Title</title>
+</head>
+<body>
+
+<img id="target" src="" alt="."/>
+
+<script type="text/javascript">
+
+  const canvas = document.createElement('canvas');
+  const target = document.getElementById('target');
+
+  const img = new Image();
+  const watermark = function() {
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    const fontsize = Math.floor(img.width / 10);
+
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+    ctx.font = 'bold ' + fontsize + 'px arial'
+
+    ctx.lineWidth = 2;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)';
+
+    ctx.fillText("szplay.net", 3, (canvas.height - fontsize) / 2 );
+    // ctx.fillText("t.me/s/szplay999", 3, canvas.height / 2 + 30);
+
+    ctx.strokeText("szplay.net", 3, (canvas.height - fontsize) / 2 );
+    // ctx.strokeText("t.me/s/szplay999", 3, canvas.height / 2 + 30);
+
+    target.src = canvas.toDataURL();
+  };
+
+  img.onload = watermark;
+  img.src = '/images/logo/circle.jpg';
+
+</script>
+
+</body>
+</html>

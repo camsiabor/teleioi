@@ -1,0 +1,201 @@
+
+
+
+
+.gmg-tag {
+    font-size: 0.70em;
+    border-radius: 0.5rem;
+    margin: 1px;
+    padding: 1px;
+    white-space: nowrap;
+}
+
+.gmg-tag-lg {
+    font-size: 0.9em;
+    border-radius: 0.5rem;
+    margin: 0.33em;
+    padding: 0.1em;
+    white-space: nowrap;
+}
+
+.gmg-tag-head {
+    font-size: 0.55em;
+    color: grey;
+    margin: 1px;
+    padding: 1px;
+    vertical-align: baseline;
+}
+
+.gmg-tag-head-lg {
+    font-size: 0.80em;
+    color: grey;
+    margin: 3px;
+    padding: 3px;
+    vertical-align: baseline;
+}
+
+
+.gmg-bold {
+    font-weight: bold;
+}
+
+.gmg-dotted {
+    border-style: dotted;
+}
+
+.gmg-btn-x {
+    width: 2.5vh;
+    height: 2.5vh;
+    opacity: 0.5;
+    text-align: center;
+    line-height: 2.5vh;
+    border-radius: 50%;
+    margin: 0.1em;
+    cursor: pointer;
+
+}
+
+/* =========================== color =========================== */
+
+.gmg-dark {
+    color: black;
+}
+
+.gmg-grey {
+    color: grey;
+}
+
+.gmg-red {
+    color: red;
+}
+
+.gmg-goldenrod {
+    color: goldenrod;
+}
+
+.gmg-orange {
+    color: orange;
+}
+
+.gmg-darkorange {
+    color: darkorange;
+}
+
+.gmg-green {
+    color: lightseagreen;
+}
+
+.gmg-blue {
+    color: dodgerblue;
+}
+
+.gmg-bg-dark {
+    color: white;
+    background: black;
+}
+
+.gmg-bg-red {
+    color: white;
+    background: red;
+}
+
+.gmg-bg-goldenrod {
+    color: white;
+    background: goldenrod;
+}
+
+.gmg-outline-dark {
+    color: black;
+    border: 1px solid black;
+}
+
+.gmg-outline-grey {
+    color: grey;
+    border: 1px solid grey;
+}
+
+.gmg-outline-dotted-grey {
+    color: grey;
+    border: 1px dotted grey;
+}
+
+.gmg-outline-red {
+    color: red;
+    border: 1px solid red;
+}
+
+.gmg-outline-dotted-red {
+    color: red;
+    border: 1px dotted red;
+}
+
+.gmg-outline-orangered{
+    color: orangered;
+    border: 1px solid orangered;
+}
+
+.gmg-outline-dotted-orangered{
+    color: orangered;
+    border: 1px dotted orangered;
+}
+
+
+.gmg-outline-goldenrod {
+    color: goldenrod;
+    border: 1px solid goldenrod;
+}
+
+.gmg-outline-orange {
+    color: darkorange;
+    border: 1px solid darkorange;
+}
+
+.gmg-outline-green {
+    color: lightseagreen;
+    border: 1px solid lightseagreen;
+}
+
+.gmg-outline-blue {
+    color: dodgerblue;
+    border: 1px solid dodgerblue;
+}
+
+
+
+
+.gmg-toggled-list-title {
+    font-size: 0.85em;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1;
+    border-radius: 3vw;
+    padding: 0.1em;
+    white-space: nowrap;
+    vertical-align: baseline;
+    margin-right: 3px;
+}
+
+.gmg-toggled-list-ground {
+    font-size: 0.75em;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 3vw;
+    padding: 0.1em;
+    white-space: nowrap;
+    vertical-align: baseline;
+    margin: 1px;
+}
+
+.gmg-toggled-list-active {
+    color: red;
+    margin: 1px;
+    border: 1px dotted red;
+}
+
+.gmg-toggled-list-common {
+    color: grey;
+    margin: 1px;
+    border: 1px dotted grey;
+}
