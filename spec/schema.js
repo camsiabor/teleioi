@@ -1,5 +1,5 @@
 
-const girl = {
+const one = {
 
     id: 'CN_GUDO_ZH0001',
 
