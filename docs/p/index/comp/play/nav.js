@@ -23,7 +23,7 @@ const template =
                 <li class="nav-item">
                     <a  class="nav-link " style="font-weight: bold" role="button" 
                         @click="ui.modal.info = true" >
-                        说明
+                        info
                     </a>
                 </li>
                 
