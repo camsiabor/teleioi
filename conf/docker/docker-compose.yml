@@ -1,0 +1,15 @@
+version: '3.6'
+
+services:
+  szplay_api:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodemon
+    restart: always
+    volumes:
+      - /home/ubuntu/:/me
+    network_mode: host
+    working_dir: /me/www/main
+    ports:
+      - "3000:3006"
+    command: "nodemon ./src/app.js ./src/cfg.js 1>./log/out.txt 2>./log/err.txt"

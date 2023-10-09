@@ -1,0 +1,45 @@
+{
+  "name": "gmg991.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmg991/gmg991.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "test/*"
+    ],
+    "delay": 2500
+  },
+  "homepage": "https://github.com/gmg991/gmg991.github.io#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "body-parser-xml": "^2.0.3",
+    "chokidar": "^3.5.1",
+    "express": "^5.0.0-alpha.8",
+    "fluent-ffmpeg": "^2.1.2",
+    "http-proxy": "^1.18.1",
+    "imagemin": "^7.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "mitt": "^3.0.0",
+    "mongodb": "^3.6.9",
+    "shortid": "^2.2.16",
+    "uuid": "^8.3.2",
+    "wechat": "^2.1.0",
+    "wechat-api": "^1.35.1",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5",
+    "ws": "^7.5.0"
+  }
+}

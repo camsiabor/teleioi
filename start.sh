@@ -1,0 +1,1 @@
+nodemon src/app.js ./cfg.js 1>>out.txt 2>>err.txt &
