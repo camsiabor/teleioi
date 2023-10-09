@@ -400,10 +400,10 @@ async function init() {
 
 
     C.ACCOUNTS_DEF = {
-        'twi': 'szplay999',
-        'tele': 'gmg99991',
-        'tele.ch': 'szplay0',
-        'youtube': 'https://www.youtube.com/channel/UCx0lT3GYUf40iIthxErla7A',
+        'twi': 'teleioi',
+        'tele': 'teleioi',
+        'tele.ch': 'teleioi',
+        'youtube': 'teleioi',
     };
 
     C.ACCOUNTS = {
