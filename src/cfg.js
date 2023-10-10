@@ -41,6 +41,7 @@ cfg.mod['./mod/web'] = [
     }
 ];
 
+/*
 cfg.mod['./mod/proxy/pong'] = [
     {
         id: 'proxy.pong',
@@ -55,14 +56,14 @@ cfg.mod['./mod/proxy/pong'] = [
 
 cfg.mod['./mod/wechat/core'] = [
     {
-        id: 'wechat.szplay',
+        id: 'wechat.teleioi',
         attach: 'http.core',
         appid: 'wx08b78be5ad623071',
         appsecret: '319f0467d522b60c0b516acf41004da5',
         token: 'szplay',
     }
 ];
-
+*/
 
 
 module.exports = cfg;

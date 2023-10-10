@@ -1,26 +1,25 @@
 
 const one = {
 
-    id: 'CN_GUDO_ZH0001',
+    id: '',
 
     body: {
         age: 1995,
         height: 160,
         weight: 45,
         cup: {
-            size: 'B',
+            size: '',
             radius: 0,
-            augument: false,
         },
         shape: true,
     },
 
     location: {
-      nation: 'CN',
-      province: 'GUDO',
-      city: 'ZH',
-      area: '拱北',
-      detail: '口岸',
+      nation: '',
+      province: '',
+      city: '',
+      area: '',
+      detail: '',
       other: '',
     },
 

@@ -5,7 +5,7 @@ const imageminPngquant = require("imagemin-pngquant");
 
 
 (async () => {
-    const files = await imagemin([ "D:/snapshot/MO0026_2.jpg"    ], {
+    const files = await imagemin([ "D:/snapshot/1.jpg"    ], {
         destination: 'D:/snapshot/acompress',
         plugins: [
             imageminMozjpeg({quality: 50}),

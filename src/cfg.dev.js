@@ -13,17 +13,6 @@ cfg.log = {
 
 cfg.mod = {};
 
-
-cfg.mod['./mod/persist/mongo'] = [
-    {
-        id: 'mongo',
-        host: 'szplay.net',
-        port: 27017,
-        username: '',
-        password: '',
-    }
-];
-
 cfg.mod['./mod/web'] = [
     {
         id: 'http.core',
@@ -37,6 +26,18 @@ cfg.mod['./mod/web'] = [
             './proxy/pong' : {},
             './github/core' : {},
         }
+    }
+];
+
+
+/*
+cfg.mod['./mod/persist/mongo'] = [
+    {
+        id: 'mongo',
+        host: 'teleioi.net',
+        port: 27017,
+        username: '',
+        password: '',
     }
 ];
 
@@ -86,11 +87,14 @@ cfg.mod['./mod/wechat/core'] = [
 ];
 
 
-
 cfg.compress = {
     src: 'D:/snapshot/',
     des: 'D:/snapshot/acompress/',
     quality: 0.66,
 };
+
+
+*/
+
 
 module.exports = cfg;
