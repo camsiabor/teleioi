@@ -60,7 +60,7 @@ cfg.mod['./mod/wechat/core'] = [
         attach: 'http.core',
         appid: 'wx08b78be5ad623071',
         appsecret: '319f0467d522b60c0b516acf41004da5',
-        token: 'szplay',
+        token: 'teleioi',
     }
 ];
 */

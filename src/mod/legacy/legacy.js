@@ -60,7 +60,7 @@ gate.post('/proxy/register', (req, res) => {
 const agent = HTTP.createServer((req, res) => {
     console.log('ip', ipv4(req));
     proxier.web(req, res, {
-        target: 'https://szplay.net'
+        target: 'https://teleioi.net'
     });
 });
 

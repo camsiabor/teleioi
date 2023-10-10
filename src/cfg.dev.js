@@ -64,7 +64,7 @@ cfg.mod['./mod/proxy/ping'] = [
             },
             {
                 'name': 'dev',
-                'endpoint': 'wss://szplay.net:3008',
+                'endpoint': 'wss://teleioi.net:3008',
                 'http': {
                     'wechat': 'http://127.0.0.1:3006/gate/wechat'
                 }
@@ -75,10 +75,10 @@ cfg.mod['./mod/proxy/ping'] = [
 
 cfg.mod['./mod/wechat/core'] = [
     {
-        id: 'wechat.szplay',
+        id: 'wechat.teleioi',
         attach: 'http.core',
 
-        token: 'szplay',
+        token: 'teleioi',
         appid: 'wx08b78be5ad623071',
         appsecret: '319f0467d522b60c0b516acf41004da5',
         checkSignature: false,

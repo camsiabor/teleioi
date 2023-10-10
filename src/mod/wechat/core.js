@@ -88,8 +88,8 @@ Core.prototype.initServer = function() {
         this.handle(req.weixin, req, res, next);
     });
 
-    // https://szplay.net/api/pong/dev/http/wechat
-    // https://szplay.net/gate/wechat
+    // https://teleioi.net/api/pong/dev/http/wechat
+    // https://teleioi.net/gate/wechat
     // express.use(EXPRESS.query());
     express.use('/gate/wechat', handler);
 };
