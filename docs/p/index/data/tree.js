@@ -805,8 +805,8 @@ async function init(opts) {
                 if (conn === 'github.api') {
                     // https://api.github.com/repos/gmg991/meta/contents/cn/gudo/zh/attr.json?ref=master&_=1622306326098
                     const user = C.SELF.github.name;
-                    const repo = 'meta';
-                    ref = ref || 'master';
+                    const repo = 'teleioi_limni';
+                    ref = ref || 'main';
                     reqopts.url = UTIL.path.concat(
                         'https://api.github.com/repos',
                         user, repo,

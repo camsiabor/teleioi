@@ -9,8 +9,8 @@ const legacy = {
         axiosopts(ctx, reqopts);
 
         const user = C.SELF.github.name;
-        const repo = 'meta';
-        ref = ref || 'master';
+        const repo = 'teleioi_limni';
+        ref = ref || 'main';
         reqopts.url = UTIL.path.concat(
             'https://api.github.com/repos',
             user, repo,

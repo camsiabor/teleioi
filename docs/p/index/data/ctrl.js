@@ -5,7 +5,7 @@ const CONFIG_DEF = {
     autoshow: '',
     github: {
         token: '',
-        branch: 'master',
+        branch: 'main',
     },
     mirror: {
         endpoint: '',

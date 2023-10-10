@@ -224,7 +224,7 @@ export const github = {
         console.log("data", data);
     },
 
-    contentLoad: async function ( { path, ref = 'master', raw = true } ) {
+    contentLoad: async function ( { path, ref = 'main', raw = true } ) {
 
         const git = this.gitter();
         const reps = await git['getContents'](ref, path, raw);
@@ -247,7 +247,7 @@ export const github = {
         return resp;
     },
 
-    contentSave: async function( { user, repo, path, content, branch = 'master', mime, encode = true }) {
+    contentSave: async function( { user, repo, path, content, branch = 'main', mime, encode = true }) {
         let current = null;
         try {
             current = await this.contentLoad({

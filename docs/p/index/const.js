@@ -19,9 +19,9 @@ async function init() {
             name: githubName,
             page: githubPage,
             pageUrl: "https://" + githubPage,
-            branch: "master",
+            branch: "main",
             v: "v3",
-            repoImg: 'img'
+            repoImg: 'teleioi_limni'
         },
 
     };

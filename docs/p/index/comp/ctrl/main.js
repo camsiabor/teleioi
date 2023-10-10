@@ -252,7 +252,7 @@ const init = async function (opts) {
         },
 
 
-        contentLoad: async function ({repo, path, ref = 'master', raw = true, decode = true}) {
+        contentLoad: async function ({repo, path, ref = 'main', raw = true, decode = true}) {
             const R = await this.gitrepo(repo);
             const promise = R['getContents'](ref, path, raw);
             const resp = await this.UTIL.axios.wrap(promise);
@@ -265,7 +265,7 @@ const init = async function (opts) {
             return resp;
         },
 
-        contentSave: async function ({repo, path, content, branch = 'master', message = 'update', encode = true}) {
+        contentSave: async function ({repo, path, content, branch = 'main', message = 'update', encode = true}) {
             const R = await this.gitrepo(repo);
             const promise = R['writeFile'](branch, path, content, message, {encode});
             const resp = await this.UTIL.axios.wrap(promise);
@@ -396,9 +396,9 @@ const init = async function (opts) {
 
                 const json = JSON.stringify(tree.data);
                 const resp = await this.contentSave( {
-                    repo: 'meta',
+                    repo: 'teleioi_limni',
                     path: 'tree/tree.json',
-                    branch: 'master',
+                    branch: 'main',
                     content: json,
                 });
                 this.info('Link sync success', resp);
@@ -520,9 +520,9 @@ const init = async function (opts) {
             // data = Base64.atob(data);
             return this.contentSave({
                 user: this.C.SELF.github.name,
-                repo: 'img',
+                repo: 'teleioi_limni',
                 path: path,
-                branch: 'master',
+                branch: 'main',
                 content: data,
                 encode: false,
             });
@@ -536,8 +536,8 @@ const init = async function (opts) {
                 this.info(msg);
             });
             const {v} = req.payload;
-            const R = await this.gitrepo('img');
-            const promise = R['deleteFile']('master', v.path);
+            const R = await this.gitrepo('teleioi_limni');
+            const promise = R['deleteFile']('main', v.path);
             return this.UTIL.axios.wrap(promise);
         },
 
