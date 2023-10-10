@@ -94,7 +94,7 @@ const TEMPLATE_LEFT_INFO =
     <div class="col-12 d-flex flex-wrap" v-if="ma.rating">                   
         <span v-for="(ra,rakey) in ma.rating">
             <span v-if="ra && rakey !== 't' " 
-                  class="gmg-tag"
+                  class="tele-tag"
                   :class="classRating(ra)"                  
                    >
                 {{ C.ATTRZ.rating[rakey].cn }} {{ra}}
@@ -104,14 +104,14 @@ const TEMPLATE_LEFT_INFO =
     -->
     
     <div class="col-12" v-if="isSpecial">
-        <span class="gmg-tag-head">特殊</span>
+        <span class="tele-tag-head">特殊</span>
         {{ explainSpecial }}           
     </div>
         
     <div class="col-12" v-if="ma.status">
-        <span class="gmg-tag-head">状态</span>
+        <span class="tele-tag-head">状态</span>
         <span
-            class="gmg-tag gmg-grey"
+            class="tele-tag tele-grey"
             style="font-weight: bold" 
             v-for="(item) in explainStatus">
             {{item}}
@@ -119,82 +119,82 @@ const TEMPLATE_LEFT_INFO =
     </div>
     
     <div class="col-12" v-if="ma.t_rest && ma.t && new Date().getTime() > ma.t_rest && ma.t_rest > ma.t">
-        <span class="gmg-tag-head gmg-dark">休息</span>
-        <span class="gmg-tag-head gmg-outline-dark">{{UTIL.time.ago_precise(ma.t_rest) }}</span>
-        <span class="gmg-tag-head gmg-dark">{{UTIL.time.formatDate(ma.t_rest)}}</span>
+        <span class="tele-tag-head tele-dark">休息</span>
+        <span class="tele-tag-head tele-outline-dark">{{UTIL.time.ago_precise(ma.t_rest) }}</span>
+        <span class="tele-tag-head tele-dark">{{UTIL.time.formatDate(ma.t_rest)}}</span>
     </div>
 
     <div class="col-12" v-if="ma.location && ma.location.district" >
-        <span class="gmg-tag-head">地点</span>        
-        <span class="gmg-tag gmg-dark"
+        <span class="tele-tag-head">地点</span>        
+        <span class="tele-tag tele-dark"
               style="font-weight: bold;" 
               v-for="(item) in ma.location.district.split(',')">
             {{ item }}
         </span>                            
-        <span class="gmg-tag gmg-dark" v-if="ma.location.street">
+        <span class="tele-tag tele-dark" v-if="ma.location.street">
             {{ ma.location.street }}
         </span>
     </div>                       
     
     <div class="col-12" v-if="ma.body">        
-        <span class="gmg-tag-head">身体</span>
+        <span class="tele-tag-head">身体</span>
         <span v-if="ma.body.birth"
-              class="gmg-tag" 
-              :class="{ 'gmg-dark': ma.body.birth < 2000, 'gmg-outline-dotted-red': ma.body.birth >= 2000 }"
+              class="tele-tag" 
+              :class="{ 'tele-dark': ma.body.birth < 2000, 'tele-outline-dotted-red': ma.body.birth >= 2000 }"
               >
             {{ ma.body.birth + 'y ' }}
         </span>
         <span  v-if="ma.body.height"
-              class="gmg-tag" 
-              :class="{ 'gmg-dark': ma.body.height < 165, 'gmg-outline-dotted-red': ma.body.height >= 165 }"
+              class="tele-tag" 
+              :class="{ 'tele-dark': ma.body.height < 165, 'tele-outline-dotted-red': ma.body.height >= 165 }"
               >
             {{ ma.body.height + 'cm ' }}
         </span>
-        <span class="gmg-tag gmg-dark" v-if="ma.body.weight">
+        <span class="tele-tag tele-dark" v-if="ma.body.weight">
             {{ ma.body.weight + 'kg ' }}
         </span>
         <span v-if="ma.body.chest" 
-              class="gmg-tag" 
-              :class="{ 'gmg-dark': ma.body.chest < 30, 'gmg-outline-dotted-red': ma.body.chest >= 38 }">
+              class="tele-tag" 
+              :class="{ 'tele-dark': ma.body.chest < 30, 'tele-outline-dotted-red': ma.body.chest >= 38 }">
             {{ C.ATTRZCODE.body.chest[ma.body.chest] }}
         </span>                                                       
     </div>
     
     <div class="col-12 d-flex flex-wrap" v-if="ma.body && ma.body.cosmetic">
-        <span class="gmg-tag-head">身体</span>
+        <span class="tele-tag-head">身体</span>
         <span
-            class="gmg-tag gmg-dark"                     
+            class="tele-tag tele-dark"                     
             v-for="(item) in UTIL.flag.asArray(ma.body.cosmetic, C.ATTRZCODE.body.cosmetic, 'cn')">
             {{item}}
         </span>
     </div>                               
     
     <div class="col-12 d-flex flex-wrap" v-if="ma.service && ma.service.open">
-        <span class="gmg-tag-head">类型</span>
+        <span class="tele-tag-head">类型</span>
         <span
-            class="gmg-tag gmg-dark"                     
+            class="tele-tag tele-dark"                     
             v-for="(item) in UTIL.flag.asArray(ma.type, C.ATTRZCODE.type, 'cn', 'short')">
             {{item}}
         </span>
         <span
-            class="gmg-tag gmg-dark"                     
+            class="tele-tag tele-dark"                     
             v-for="(item) in UTIL.flag.asArray(ma.service.open, C.ATTRZCODE.service.open, 'cn')">
             {{item}}
         </span>
     </div>                
     
     <div class="col-12 d-flex flex-wrap" v-if="explainService.length">                
-        <span class="gmg-tag-head">服务</span>
-        <span v-for="(item) in explainService" class="gmg-tag" style="color: darkorange">
+        <span class="tele-tag-head">服务</span>
+        <span v-for="(item) in explainService" class="tele-tag" style="color: darkorange">
             {{item}}                    
         </span>            
     </div>
     
     <div class="col-12 d-flex flex-wrap" v-if="1===2">                
-        <span class="gmg-tag-head">服务</span>
+        <span class="tele-tag-head">服务</span>
         <span v-for="(servgrp,servkey) in C.ATTRZCODE.service">
             <span
-                class="gmg-tag gmg-darkorange" 
+                class="tele-tag tele-darkorange" 
                 v-if="servkey !== 'open' && ma.service[servkey]"
                 v-for="(item) in UTIL.flag.asArray(ma.service[servkey], servgrp, 'cn')">
                 {{item}}
@@ -204,24 +204,24 @@ const TEMPLATE_LEFT_INFO =
            
     <div class="col-12" v-for="(ch,chkey) in ma.charge"                             >
         <div v-if="ch">
-            <span class="gmg-tag-head">价位</span>        
-            <span class="gmg-tag gmg-darkorange">{{ C.ATTRZ.charge[chkey].cn }}</span>
-            <span class="gmg-tag gmg-darkorange" style="font-weight: bold;">{{ch}}</span>
+            <span class="tele-tag-head">价位</span>        
+            <span class="tele-tag tele-darkorange">{{ C.ATTRZ.charge[chkey].cn }}</span>
+            <span class="tele-tag tele-darkorange" style="font-weight: bold;">{{ch}}</span>
         </div>                           
     </div>
     
     <div class="col-12 d-flex flex-wrap" v-if="ma.character && ma.character.flag">                
-        <span class="gmg-tag-head">特点</span>
+        <span class="tele-tag-head">特点</span>
         <span
-            class="gmg-tag gmg-grey"                     
+            class="tele-tag tele-grey"                     
             v-for="(item) in UTIL.flag.asArray(ma.character.flag, C.ATTRZCODE.character, 'cn')">
             {{item}}
         </span>            
     </div>
     
     <div class="col-12" v-if="ma.desc">
-        <span class="gmg-tag-head">其他</span>
-        <span class="gmg-grey" style="font-size: 0.75em;">{{ma.desc}}</span>
+        <span class="tele-tag-head">其他</span>
+        <span class="tele-grey" style="font-size: 0.75em;">{{ma.desc}}</span>
     </div>     
     
     
@@ -230,7 +230,7 @@ const TEMPLATE_LEFT_INFO =
         <bs-rating
             :value="ma.rating[rakey]" :delta="5" :lower="65"                         
             symbol-style="font-size: 0.8em; "
-            :title="C.ATTRZ.rating[rakey].cn" title-class="gmg-tag-head">
+            :title="C.ATTRZ.rating[rakey].cn" title-class="tele-tag-head">
             <template v-slot:default="o">
                 <i class="bi bi-droplet-fill" style="color: rgb(212,212,212); margin-right: 1px;"></i>
             </template>
@@ -243,15 +243,15 @@ const TEMPLATE_LEFT_INFO =
                                             
            
     <div class="col-12" v-if="ma.t">
-        <span class="gmg-tag-head">更新</span>
-        <span class="gmg-tag-head" :style="styleTime">{{UTIL.time.ago_precise(ma.t) }}</span>
-        <span class="gmg-tag-head">{{UTIL.time.formatDatetime(ma.t)}}</span>
+        <span class="tele-tag-head">更新</span>
+        <span class="tele-tag-head" :style="styleTime">{{UTIL.time.ago_precise(ma.t) }}</span>
+        <span class="tele-tag-head">{{UTIL.time.formatDatetime(ma.t)}}</span>
     </div>
     
     <div class="col-12" v-if="ma.t_rest && ma.t_rest > new Date().getTime()">
-        <span class="gmg-tag-head">开到</span>        
-        <span class="gmg-tag-head gmg-outline-dark">{{UTIL.time.later(ma.t_rest) }}</span>        
-        <span class="gmg-tag-head">{{UTIL.time.formatDate(ma.t_rest)}}</span>
+        <span class="tele-tag-head">开到</span>        
+        <span class="tele-tag-head tele-outline-dark">{{UTIL.time.later(ma.t_rest) }}</span>        
+        <span class="tele-tag-head">{{UTIL.time.formatDate(ma.t_rest)}}</span>
     </div>                                       
     
                  
@@ -453,15 +453,15 @@ const init = async function(OPTS) {
         methods: {
             classRating(ra) {
                 if (ra < 50) {
-                    return 'gmg-outline-dark';
+                    return 'tele-outline-dark';
                 }
                 if (ra < 70) {
-                    return 'gmg-outline-dotted-grey';
+                    return 'tele-outline-dotted-grey';
                 }
                 if (ra <= 84) {
-                    return 'gmg-outline-dotted-orangered'
+                    return 'tele-outline-dotted-orangered'
                 }
-                return 'gmg-outline-red gmg-bold';
+                return 'tele-outline-red tele-bold';
             }
         }
     };

@@ -149,13 +149,12 @@ const twitterMethods = {
     },
 
     twitterJump(item) {
-        // https://twitter.com/search?q=%22GMG_ZH0054%22%20(from%3Agmg999zh)&src=typed_query
         let keyword = item.name;
         let index = keyword.indexOf('_');
         if (index > 0) {
             keyword = keyword.substr(0, index);
         }
-        keyword = 'GMG_' + keyword;
+        keyword = '' + keyword;
         let url = this.twitterQueryBuild(keyword, this.locator);
         window.open(url);
     },
@@ -167,16 +166,16 @@ const twitterMethods = {
                 break;
             case "zh":
                 return {
-                    name: "qm_zhuhai",
-                    url : 'https://twitter.com/qm_zhuhai',
+                    name: "x",
+                    url : 'https://twitter.com/',
                 };
             default:
-                city = "91";
+                city = "x";
                 break;
         }
         return {
-            name : 'camsiabor' + city,
-            url : 'https://twitter.com/camsiabor' + city,
+            name : 'teleioi' + city,
+            url : 'https://twitter.com/teleioi' + city,
         };
     },
 };

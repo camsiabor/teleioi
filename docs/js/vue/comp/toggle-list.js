@@ -82,19 +82,19 @@ async function init() {
         },
         _classTitle: {
             type: String,
-            default: 'gmg-toggled-list-title',
+            default: 'tele-toggled-list-title',
         },
         _classGround: {
             type: String,
-            default: 'gmg-toggled-list-ground',
+            default: 'tele-toggled-list-ground',
         },
         _classActive: {
             type: String,
-            default: 'gmg-toggled-list-active',
+            default: 'tele-toggled-list-active',
         },
         _classCommon: {
             type: String,
-            default: 'gmg-toggled-list-common',
+            default: 'tele-toggled-list-common',
         },
         _multiple: {
             type: Boolean,

@@ -26,7 +26,7 @@ const TEMPLATE =
                 <div class="card" 
                      style="width: 100%; border: 1px dotted rgb(96,96,96); ">
                     <span @click="remove(o.item)"
-                          class="position-absolute top-0 end-0 gmg-bg-red gmg-btn-x">
+                          class="position-absolute top-0 end-0 tele-bg-red tele-btn-x">
                           x                                             
                     </span>                                                                                                                                         
                     <component :is="layout" :v="o.item" :o="o" />                                                            

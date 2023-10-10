@@ -9,7 +9,7 @@ const TEMPLATE =
 
 
 <div class="position-absolute top-25 end-0" style="z-index: 65535; " v-if="1===2">    
-    <div class="gmg-tag-lg gmg-outline-red" style="cursor: pointer;">
+    <div class="tele-tag-lg tele-outline-red" style="cursor: pointer;">
         {{ advance ? '简单' : '进阶' }}
     </div>    
 </div>

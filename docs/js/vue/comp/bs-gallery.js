@@ -29,7 +29,7 @@ const TEMPLATE =
                      style="width: 100%; border: 1px dotted rgb(96,96,96); ">
                     <span v-if="closeBtn"
                           @click="remove(o.item)" 
-                          class="position-absolute top-0 end-0 gmg-bg-red gmg-btn-x" style="z-index: 1024;">
+                          class="position-absolute top-0 end-0 tele-bg-red tele-btn-x" style="z-index: 1024;">
                           x                                             
                     </span>                                                                                                                                         
                     <component :is="layout" :v="o.item" :o="o" :key="o[datafield]" >
